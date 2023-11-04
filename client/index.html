@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <ul id="ul">
+
+        </ul>
+    </div>
+    <script>
+        // to receive events from server we need to open a connection
+        const eventSource = new EventSource("http://127.0.0.1:3000");
+        eventSource.onmessage = (event) => {
+            const ulist = document.getElementById("ul");
+            const listElem = document.createElement("li");
+            listElem.textContent = event.data;
+            ulist.appendChild(listElem);
+        }
+    </script>
+</body>
+</html>
